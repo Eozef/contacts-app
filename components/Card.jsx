@@ -14,6 +14,7 @@ import {
   ModalCloseButton,
   Icon,
   useDisclosure,
+  IconButton,
 } from "@chakra-ui/react";
 export const Card = ({ name, username, email, phone, website, address }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -23,9 +24,9 @@ export const Card = ({ name, username, email, phone, website, address }) => {
       <Avatar name={name} size="sm" />
       <p>{name}</p>
 
-      <Button onClick={onOpen}>
+      <IconButton onClick={onOpen}>
         <Icon boxSize={6} color="red.500" />
-      </Button>
+      </IconButton>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -34,16 +35,15 @@ export const Card = ({ name, username, email, phone, website, address }) => {
           <ModalBody>
             <p> </p>
             <p>Username: {username}</p>
-            <p>{email}</p>
-            <p>{website}</p>
-            <p>{phone}</p>
-            <p>{address}</p>
+            <p>Email: {email}</p>
+            <p>Website: {website}</p>
+            <p>Phone: {phone}</p>
+            <p>Address: {address}</p>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            {/* <Button variant="ghost">Secondary Action</Button> */}
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -53,13 +53,16 @@ const Index = () => {
         }}
       >
         <Center>
-          <h1>Contacts</h1>
+          <h1>
+            <strong>Contacts</strong>
+          </h1>
         </Center>
 
         <VStack spacing={5} paddingY="20px" align="start">
           <InputGroup>
             <InputRightElement pointerEvents="none">
               {/* Implement a feature to filter the array and list the contacts */}
+              {}
               <SearchIcon />
             </InputRightElement>
 
