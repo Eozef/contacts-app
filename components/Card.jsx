@@ -12,18 +12,19 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  InfoIcon,
+  Icon,
   useDisclosure,
 } from "@chakra-ui/react";
 export const Card = ({ name, username, email, phone, website, address }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <HStack spacing="5">
-      <Avatar alt={name} src="https://bit.ly/dan-abramov" size="sm" />
+      <Avatar name={name} size="sm" />
       <p>{name}</p>
 
       <Button onClick={onOpen}>
-        <p> more info</p>
+        <Icon boxSize={6} color="red.500" />
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
