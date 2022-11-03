@@ -6,7 +6,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useMemo } from "react";
 import { Card } from "../components/Card";
 
 const Index = () => {
@@ -22,7 +22,7 @@ const Index = () => {
   }, []);
 
   const filteredData = useMemo(() => {
-    return data.filter(item => item.name.inlcudes(filterText)) || []
+    return data.filter(item => item.name.includes(filterText))
   }, [data, filterText])
 
   return (
