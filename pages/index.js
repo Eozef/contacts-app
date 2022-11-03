@@ -6,12 +6,12 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { useEffect, useState,useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Card } from "../components/Card";
 
 const Index = () => {
   const [data, setData] = useState([]);
-  const [filterText, setFilterText] = useState('');
+  const [filterText, setFilterText] = useState("");
   useEffect(() => {
     const run = async () => {
       await fetch("https://jsonplaceholder.typicode.com/users")
@@ -22,8 +22,8 @@ const Index = () => {
   }, []);
 
   const filteredData = useMemo(() => {
-    return data.filter(item => item.name.includes(filterText))
-  }, [data, filterText])
+    return data.filter((item) => item.name.toLowerCase().includes(filterText));
+  }, [data, filterText]);
 
   return (
     <div
@@ -41,7 +41,7 @@ const Index = () => {
           backgroundColor: "white",
           display: "flex",
           flexDirection: "column",
-          minWidth:'50%',
+          minWidth: "50%",
           borderRadius: "25px",
           padding: "40px",
         }}
@@ -58,7 +58,11 @@ const Index = () => {
               <SearchIcon />
             </InputRightElement>
 
-            <Input type="search" placeholder="Search" onChange={event => setFilterText(event.target.value)} />
+            <Input
+              type="search"
+              placeholder="Search"
+              onChange={(event) => setFilterText(event.target.value)}
+            />
           </InputGroup>
 
           <div>
