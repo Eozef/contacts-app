@@ -1,19 +1,9 @@
 import {
   Center,
-  flexbox,
-  GridItem,
   Input,
   VStack,
-  IconButton,
   InputGroup,
   InputRightElement,
-  Stack,
-  Wrap,
-  WrapItem,
-  Avatar,
-  AvatarBadge,
-  HStack,
-  hover,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
@@ -21,6 +11,7 @@ import { Card } from "../components/Card";
 
 const Index = () => {
   const [data, setData] = useState([]);
+  const [filterText, setFilterText] = useState('');
   useEffect(() => {
     const run = async () => {
       await fetch("https://jsonplaceholder.typicode.com/users")
@@ -30,8 +21,11 @@ const Index = () => {
     run();
   }, []);
 
+  const filteredData = useMemo(() => {
+    return data.filter(item => item.name.inlcudes(filterText)) || []
+  }, [data, filterText])
+
   return (
-    //background
     <div
       style={{
         backgroundColor: "darkblue",
@@ -47,7 +41,7 @@ const Index = () => {
           backgroundColor: "white",
           display: "flex",
           flexDirection: "column",
-          width: "40%",
+          minWidth:'50%',
           borderRadius: "25px",
           padding: "40px",
         }}
@@ -61,21 +55,14 @@ const Index = () => {
         <VStack spacing={5} paddingY="20px" align="start">
           <InputGroup>
             <InputRightElement pointerEvents="none">
-              {/* Implement a feature to filter the array and list the contacts */}
-              {}
               <SearchIcon />
             </InputRightElement>
 
-            <Input type="search" placeholder="Search" />
+            <Input type="search" placeholder="Search" onChange={event => setFilterText(event.target.value)} />
           </InputGroup>
 
-          {/* 
-            1. Map through the array and list the contact, by name
-            2. Make it hover and clickable feel, background
-
-         */}
           <div>
-            {data.map((contactList) => (
+            {filteredData.map((contactList) => (
               <Card
                 key={contactList.id}
                 name={contactList.name}
@@ -84,7 +71,6 @@ const Index = () => {
                 address={`${contactList.address.suite} ${contactList.address.street} ${contactList.address.city} ${contactList.address.zipcode}`}
                 phone={contactList.phone}
                 website={contactList.website}
-                // street={contactList.address.street}
               />
             ))}
           </div>

@@ -15,25 +15,25 @@ import {
   Icon,
   useDisclosure,
   IconButton,
+  Text
 } from "@chakra-ui/react";
 export const Card = ({ name, username, email, phone, website, address }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <HStack spacing="5">
-      <Avatar name={name} size="sm" />
-      <p>{name}</p>
+    <HStack spacing="5" marginY="10px">
+      <Button variant={"ghost"} onClick={onOpen}>
+        <Avatar name={name} size="sm" />
+        <Text paddingLeft='5px'>
+        {name}
+        </Text>
+      </Button>
 
-      <IconButton onClick={onOpen}>
-        <Icon boxSize={6} color="red.500" />
-      </IconButton>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Contants detail</ModalHeader>
-          <ModalCloseButton />
+          <ModalHeader>Contact detail</ModalHeader>
           <ModalBody>
-            <p> </p>
             <p>Username: {username}</p>
             <p>Email: {email}</p>
             <p>Website: {website}</p>
