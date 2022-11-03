@@ -24,7 +24,6 @@ const Index = () => {
   const filteredData = useMemo(() => {
     return data.filter((item) => item.name.toLowerCase().includes(filterText));
   }, [data, filterText]);
-
   return (
     <div
       style={{
@@ -64,19 +63,22 @@ const Index = () => {
               onChange={(event) => setFilterText(event.target.value)}
             />
           </InputGroup>
-
           <div>
-            {filteredData.map((contactList) => (
-              <Card
-                key={contactList.id}
-                name={contactList.name}
-                username={contactList.username}
-                email={contactList.email}
-                address={`${contactList.address.suite} ${contactList.address.street} ${contactList.address.city} ${contactList.address.zipcode}`}
-                phone={contactList.phone}
-                website={contactList.website}
-              />
-            ))}
+            {filteredData.length ? (
+              filteredData.map((contactList) => (
+                <Card
+                  key={contactList.id}
+                  name={contactList.name}
+                  username={contactList.username}
+                  email={contactList.email}
+                  address={`${contactList.address.suite} ${contactList.address.street} ${contactList.address.city} ${contactList.address.zipcode}`}
+                  phone={contactList.phone}
+                  website={contactList.website}
+                />
+              ))
+            ) : (
+              <p>Result not found</p>
+            )}
           </div>
         </VStack>
       </div>
